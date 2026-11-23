@@ -4,14 +4,14 @@ When is it worth asking a specialist analyst to investigate a data question? Bra
 
 ## The pilot
 
-“How many jobs were slow?” sounds like a counting question, but a job that waited a minute to start tells a different story from one that took a minute to finish. The pilot uses synthetic records from an image-generation workflow to check whether each approach spots that ambiguity, asks for clarification, and gives an answer someone can verify.
-
-The comparison covers ten pairs of questions. Each question is asked before and after a small change to the records. Hand-checked answers, elapsed time, and total usage will show where the specialist earns the extra cost.
+Development uses three disclosed PostgreSQL samples, one per tier. After the build, an independent evaluator will compare both approaches on nine fresh held-out cases across three domains and three tiers. It will track which answers can be verified, how long they take, and how much each approach uses. Git holds the dataset documentation. The development machine holds the fixture tools and databases, and the evaluator keeps the blind material outside the checkout.
 
 ## Project status
 
-Bramble is at the requirements stage. Start with the worked example in the product requirements to see how one retry changes the expected answer.
+Bramble is at the requirements stage. Development uses separate sample data. The independent evaluator shares the database type (relational) and expected scale with the developer, and selects the evaluation datasets privately.
 
-- [Product requirements and worked example](PRD.md#a-worked-example)
+- [Product requirements](PRD.md)
+- [Architecture draft and decisions for review](docs/architecture.md)
+- [Sample databases, worked examples and local handoff](docs/sample-databases.md)
 - [Business goals and success criteria](BRD.md)
 - [Contributor guide](AGENTS.md)

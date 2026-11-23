@@ -6,9 +6,7 @@ I’m an AI engineer. I’m using Bramble to decide when it’s worth asking a s
 
 ## The pilot decision
 
-An image-generation service I worked on provides a familiar example. Suppose someone says generation felt slower yesterday. Did jobs wait longer to start, take longer to finish once started, or need more retries? Each answer points me toward a different part of the service. A count of “slow jobs” alone gives me little basis for deciding where to look.
-
-I’ll use a small set of synthetic records so I can work out the answers by hand and share the comparison. The same question and records go to both approaches. That lets me see, for example, whether the specialist notices an ambiguity the assistant missed.
+I’ll develop both approaches on three disclosed samples, one per tier. After the build, an independent evaluator will test them on nine fresh databases drawn from public records, covering three domains at all three tiers. I want to see whether the specialist’s value depends on the kind of analysis. For each case, both approaches will get the same question and records.
 
 ## What I need to decide
 
@@ -21,6 +19,6 @@ I’ll use a small set of synthetic records so I can work out the answers by han
 
 ## Delivery and success
 
-First, I’ll verify the example by hand. Then I’ll try both approaches locally and compare them on ten pairs of questions. The outcome is a recommendation grounded in those cases, including ties and failures. A tie still helps me decide whether the extra work is worthwhile.
+I’ll verify the expected answers by hand and compare both approaches across the independently selected datasets. I’ll review the results by dataset and question type, including ties and failures, to decide where the extra work is worthwhile.
 
 Hosted access is a separate milestone. I want to repeat a question from Claude and an OpenAI client and verify that access limits hold for both approaches. Before extending the findings to another domain, I’d want someone who knows that work to supply a real question and judge whether the answer helps them make a decision. The repeatable pilot checks are in the [product requirements](PRD.md).
