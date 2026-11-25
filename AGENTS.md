@@ -2,10 +2,11 @@
 
 ## Project structure
 
-Bramble is at the requirements stage. The first working version will use one public dataset. The evaluation will cover a few public datasets chosen for the different questions they support.
+Bramble is at the requirements stage. Development uses three disclosed synthetic PostgreSQL samples and starts with the Small one. The evaluation uses nine held-out databases that the independent evaluator keeps.
 
 - Read [BRD.md](BRD.md) when changing the pilot audience, business objectives, or criteria for deciding whether delegated analysis earns its cost.
 - Read [PRD.md](PRD.md) when changing answer requirements, evaluation cases, review panel behavior, or release acceptance checks.
+- Read [docs/specs/local-pilot.md](docs/specs/local-pilot.md) when building or changing any part of the local pilot.
 
 The local pilot compares direct investigation with delegation to a specialist analyst. Remote client access belongs to the hosted milestone.
 

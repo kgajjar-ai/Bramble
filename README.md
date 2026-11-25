@@ -11,7 +11,8 @@ Development uses three disclosed PostgreSQL samples, one per tier. After the bui
 Bramble is at the requirements stage. Development uses separate sample data. The independent evaluator shares the database type (relational) and expected scale with the developer, and selects the evaluation datasets privately.
 
 - [Product requirements](PRD.md)
-- [Architecture draft and decisions for review](docs/architecture.md)
+- [Local pilot scope](docs/specs/local-pilot.md)
+- [Architecture draft](docs/architecture.md)
 - [Sample databases, worked examples and local handoff](docs/sample-databases.md)
 - [Business goals and success criteria](BRD.md)
 - [Contributor guide](AGENTS.md)

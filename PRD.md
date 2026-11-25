@@ -18,7 +18,7 @@ Develop against three disclosed sample relational databases, one per tier across
 
 ## Comparing the two approaches
 
-An independent evaluator runs the finished application against several public datasets. Both routes receive the same question, records, and total work allowance. The evaluator checks the answers and supplies the results for private review. Development and build checks use separate examples.
+An independent evaluator runs the finished application against the nine held-out cases, three times on each route. Both routes receive the same question, records, and total work allowance. The evaluator checks the answers and supplies the results for private review. Development and build checks use separate examples. The [local pilot scope](docs/specs/local-pilot.md) defines the allowance, the trials, and a passing answer.
 
 ## Reviewing results and requests
 

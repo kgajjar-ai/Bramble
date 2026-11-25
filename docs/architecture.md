@@ -2,7 +2,7 @@
 
 ## From question to evidence
 
-The user's usual AI assistant owns the conversation. It connects to Bramble through the Model Context Protocol (MCP), which exposes three tools.
+The user's usual AI assistant owns the conversation. In the local pilot it is Claude Code or Codex. It connects to Bramble over local HTTP with the Model Context Protocol (MCP), which exposes three tools. The [local pilot scope](specs/local-pilot.md) holds the detailed rules.
 
 ```text
 Assistant → MCP → inspect schema or run query ─┐
@@ -22,7 +22,7 @@ Browser → React panel → review API → Bramble's own records
 
 **Direct investigation.** The assistant chooses what to inspect and query. Bramble enforces the caller's access, query limits, and timeouts. It identifies incomplete results so the caller can interpret them correctly.
 
-**Delegated investigation.** Bramble owns the investigation and uses the same data access and limits. It returns an answer with reproducible evidence, a focused clarification, or a failure reason. On clarification, the assistant asks the user and submits a fresh, self-contained question. The specialist's internal workflow is still open.
+**Delegated investigation.** Bramble owns the investigation and uses the same data access and limits. It returns an answer with reproducible evidence, a focused clarification, or a failure reason. On clarification, the assistant asks the user and submits a fresh, self-contained question. The specialist is three agents in a fixed order: an interpreter, an analyst, and a reviewer.
 
 **Record ownership.** Bramble writes request identifiers, timings, outcomes, and observed usage to its own storage. The review API distinguishes Bramble's observations from information supplied by a client or evaluator. For example, a direct query can have a known duration while the assistant's final answer and total model usage remain unknown.
 
@@ -61,14 +61,15 @@ The panel reads evaluator-provided results at runtime. Keep held-out results in 
 | `backend/` (proposed) | Run the two analysis routes, enforce shared read limits, record outcomes, and serve the review API. Keep tests of those behaviors here. |
 | `frontend/` (proposed) | Implement Evaluations and Requests, with tests for what the reviewer sees and can do. |
 | [Sample database guide](sample-databases.md) | Documents the disclosed development samples and where the operator keeps the local kit. |
-| `docs/specs/` (proposed) | Keep a reviewed spec for each feature alongside the architecture note in `docs/`. |
+| `docs/specs/` | Keep a reviewed spec for each feature alongside the architecture note in `docs/`. |
 
 ## What the reference implementation verifies
 
 In the supplied Parkify archive, `frontend/package.json` runs `vite build`, and `frontend/vite.config.ts` forwards development requests under `/api` to the backend. In production, `docker/Dockerfile` builds the frontend in a Node stage and copies its `dist/` into the Python runtime image. In `backend/app/main.py`, FastAPI registers the API routes before mounting the built frontend at the root. This gives developers quick feedback while editing React and gives users one address when the application is running.
 
-## Decisions for review
+## Technology choices
 
-- **Frontend tooling.** Vite is the proposed choice for this static build. Next.js static export is also compatible with the one-server design if learning Next.js is a project goal.
-- **First panel interaction.** Start by opening an already completed comparison, consistent with the read-only panel in the [product requirements](../PRD.md). Starting a run from the panel would add a separate workflow for submission, progress, and interruption.
-- **Database engines.** The first supported analysis engine and the choice between PostgreSQL and MySQL for Bramble's application database remain open. The project owner runs migrations unless explicitly delegated.
+- **Frontend tooling.** React with Vite, built to static files that the FastAPI backend serves.
+- **First panel interaction.** The panel opens completed comparisons and is read only, consistent with the [product requirements](../PRD.md).
+- **Database engines.** PostgreSQL is the analysis engine and the application database. The project owner runs migrations unless explicitly delegated.
+- **Specialist library.** Pydantic AI runs the specialist's agents.
